@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="keywords" content="javascript, HTML5, CSS3, Form Builder, JSON Editor, RAD, SPA, IDE, UI, GUI, Ajax, cross-browser, cross-platform, develop" />
+        <meta name="description" content="Built by CrossUI RAD Tools - Develop Once,Deploy Anywhere, HTML5, CSS3 and JavaScript for all platforms" />
+        <meta name="copyright" content="copyright@crossui.com" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta http-equiv="imagetoolbar" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="stylesheet" type="text/css" href="runtime/xui/appearance/vista/theme.css" />
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>   
+        
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"> </script>
+        
+        <script type="text/javascript" src="geo/gmaps.js"></script>
+        
+        <title>Phonegap</title>
+        
+    </head>
+    <body>
+        
+        <script type="text/javascript" src="runtime/xui/js/xui-all.js"></script>
+        <script type="text/javascript" src="App/js/index.js"></script>
+        <script type="text/javascript">
+            
+            var ins;
+            var map;
+            var marker;
+            
+            xui.main( init() );
+            
+            function init(){
+                
+                
+                ins = new App;
+                
+                ins.iniComponents();
+                xui('body').append(ins.getUIComponents());
+                
+                
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                map = new GMaps({
+                    div: '#mapg',
+                    lat: -12.043333,
+                    lng: -77.028333
+                });
+                
+                
+            }
+            
+            
+            
+            
+            function onDeviceReady() {
+                
+                
+            }
+            
+            
+            var onSuccess = function(position) {
+                
+                /*
+                alert('Latitude: '          + position.coords.latitude          + '\n' +
+                      'Longitude: '         + position.coords.longitude         + '\n' +
+                      'Altitude: '          + position.coords.altitude          + '\n' +
+                      'Accuracy: '          + position.coords.accuracy          + '\n' +
+                      'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                      'Heading: '           + position.coords.heading           + '\n' +
+                      'Speed: '             + position.coords.speed             + '\n' +
+                      'Timestamp: '         + position.timestamp                + '\n');
+            };
+            */
+                
+                map.setCenter(position.coords.latitude, 
+                              position.coords.longitude);
+                if (!marker) {
+                    
+                    
+                    map.addMarker({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                        title: 'Sei Qui!',
+                        
+                    });
+                    marker = true;
+                }
+                
+            }
+            
+ 
+        </script>
+        
+        
+    </body>
+</html>
